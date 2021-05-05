@@ -1,15 +1,14 @@
 
-# Loomo Tour Guide
-The main idea of this project is to design a conceptual robot tour guide for an art gallery using Segway Loomo. The robot's task is to take the name of the art piece the user is wishing to visit. Then, Loomo shall take them to the exhibit they asked to see, and give them a brief description about the history of the art piece, e.x. artist, period, location ..etc.
+# Dagu Thumper Tour Guide
+The main idea of this project is to design a conceptual robot tour guide for an art gallery using Dagu Thumper. The kit's task is to scan the art space, detect the exibits by detecting their color, recall background information and give the visitors a brief description about the history of the art piece, e.x. artist, period, location ..etc.
 
 ## Motivation 
 Social robots has been recently used to serve multiple purposes, like personal assistance and performing tasks within the domain of domestic services and healthcare. Currently, there is a growing interest in the use of tour guide mobile robots in various environments such as museums, exhibitions and fairs, to provide help for the visitors by offering them a set of services, such as giving them general tours, helping them find points of interest, and providing information about different exhibits.
 
 ## Initial Design 
 ### Features
-* Speech Recognition: e.x. "Go to art piece1", "Go to art piece2", "General tour".
 * Text-to-Speech: By Giving a Brief Description about an Art Piece.
-* Localization and Tracking.
+* Color detection: To recognize the art piece through dtecting different colors.
 * Obstacle Detection: To Avoid Collision.
 
 ### Logic Design
@@ -40,18 +39,21 @@ we'll use the Loomo SDK mainly focusing on the:
 * Locomotion (Base) SDK 
 
 ## Initial Assumptions
-* The map of the gallery is predefined.
+* The map of the gallery is predefined and positions of exhibits .
 * The human interaction partners follow the robot’s suggestions without the need for the robot to check for their compliance.
 
+## Challenges and Modifications 
+1. We decided not to proceed working with Loomo Segway for number of reasons. These includes the inability to deploy native C++ robotics applications on Loomo robot. The only Repository found hat works as a bridge between JAVA SDK and C++ interfaces was in alpha phase with no sufficient documentation and number of deprecated modules/libraries. 
+2. The is no resources found that explain interfacing between our color sensor(TCS230) and our microcontroller (stm32l432kc). However, There are alot of support when using Arduino. So we were able to operate on Arduino to test our hypothesis . We used the sensor with stm32l432kc board, but the results are not very accurate. 
+
 ## Milestones
-1. First Milestone (A Predefined Path Following & Speaking Features): Using a previously known localization map, the robot can guide the users and give them information about different exhibits, following a predefined path from start to end. 
-2. Second Milestone (Speech Recognition & Information Retrieval Feature): Adding human-robot interaction feature in the form of taking the art piece name and directing the users towards it from a predefined point.
-3. Third Milestone (Point-to-Point Mapping Feature): In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition.
-4. Fourth Milestone (Mapping & Localization Feature): By using the camera sensor and RealSense module.
+1. First Milestone (A Predefined Path Following & Speaking Features & obstacles detection): Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end along with avoiding any obstacle in its way. 
+2. Second Milestone (Art pieces detection & Information Retrieval Feature): We will utilize the color sensor to detect the exhibits and then retrieve the related information. 
+3. Third Milestone (Point-to-Point Mapping Feature): In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition. The User shall send the name of the art piece tp the kit trough Bluetooth Module. 
+
 
 ## References
-* Liebl, Johanna. “Segway Robot Loomo As A Tour Guide.” 
-* Segway Robotics. [Segway Robot Loomo Documentation](https://developer.segwayrobotics.com/developer/documents/segway-robot-overview.html). 
+*
 
 
 ## Proposal Video
