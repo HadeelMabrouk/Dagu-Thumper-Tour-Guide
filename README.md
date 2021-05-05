@@ -22,21 +22,13 @@ In this project, we are planning to use Segway Loomo primarily making use of the
 ### Sensors
 * The microphone array: which is composed of 5 mics is used to localize voice source and reduce background noises during voice recognition.
 * The Ultrasonic sensor: in the front to detect obstacles in real time to prevent collisions.
-* Intel's RealSense module: to provide aligned RGB-Depth images at 30fps, for visual Simultaneous Localization and Mapping (SLAM).
-* The main HD camera: which is mounted next to the robot face, with a wide-angle of 104 degrees FOV.
-### Actuators
-* Speakers
-* Wheel Motors  
-* LCD Screen: for output displaying and debugging purposes.   
-![Hardware Platform](https://i.imgur.com/Ue1aABD.png) 
+* 
 
 
 ## Software Platform 
-Since Loomo runs on the Android version 5.1 operating system, we will need to use Android Studio as a development tool.
-we'll use the Loomo SDK mainly focusing on the:
-* Speech SDK
-* Vision SDK
-* Locomotion (Base) SDK 
+* µVision IDE - Keil
+* STM Studio
+* Tera Term
 
 ## Initial Assumptions
 * The map of the gallery is predefined and positions of exhibits .
