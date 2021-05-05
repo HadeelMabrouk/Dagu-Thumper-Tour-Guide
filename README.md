@@ -26,9 +26,9 @@ In this project, we are planning to use Segway Loomo primarily making use of the
 
 
 ## Software Platform 
-* µVision IDE - Keil
-* STM Studio
-* Tera Term
+* Keil uVision5
+* STM32CubeMX
+
 
 ## Initial Assumptions
 * The map of the gallery is predefined and positions of exhibits .
