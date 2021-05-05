@@ -12,10 +12,10 @@ Social robots has been recently used to serve multiple purposes, like personal a
 * Obstacle Detection: To Avoid Collision.
 
 ### Logic Design
-![Logic Design](https://i.imgur.com/Y2jsA25.png)
+![Logic Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG)
 
 ### System Design
-![System Design](https://i.imgur.com/HXbgxBY.png)
+![System Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/system2.png)
 
 ## Hardware Platform   
 In this project, we are planning to use Segway Loomo primarily making use of the following sensors and actuators, as shown in the figure:
