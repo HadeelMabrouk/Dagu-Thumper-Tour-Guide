@@ -11,18 +11,26 @@ Social robots has been recently used to serve multiple purposes, like personal a
 * Color detection: To recognize the art piece through dtecting different colors.
 * Obstacle Detection: To Avoid Collision.
 
-### Logic Design
+### Logic Design 
+The Kit will take the user from a starting point and guide them in the Exhibit hall. It will detect 
 ![Logic Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG)
 
 ### System Design
 ![System Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/system2.png)
 
-## Hardware Platform   
-In this project, we are planning to use Segway Loomo primarily making use of the following sensors and actuators, as shown in the figure:
-### Sensors
-* The microphone array: which is composed of 5 mics is used to localize voice source and reduce background noises during voice recognition.
+### Physical Connections 
+![Physical Connections](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg) 
+
+## Hardware Components    
 * The Ultrasonic sensor: in the front to detect obstacles in real time to prevent collisions.
-* 
+* STM32 Nucleo Board (L432KC): to controle the communication between all the actuators. 
+* Dagu Thumper
+* Pololu TReX Motor Controller
+* Color Sensor (TCS3200)
+* MP3 Mini Player Module (MP3－TF－16P)
+* MicroSD Memory Card
+* Speakers
+
 
 
 ## Software Platform 
