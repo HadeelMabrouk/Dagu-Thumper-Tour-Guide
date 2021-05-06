@@ -13,16 +13,25 @@ Social robots has been recently used to serve multiple purposes, like personal a
 
 ### Logic Design 
 The Kit will take the user from a starting point and guide them in the Exhibit hall. Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end using the color detector to detect any color changes. 
-![Logic Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG)
 
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG" width="600" height="400">
+<p>
+  
 ### System Design
 The following is a grahical representation of the full system design showing all the sensors and controllers. 
-![System Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/system2.png)
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/system2.png" width="600" height="700">
+<p>
 
 ### Physical Connections 
 The following is a real representation of the whole system on top of the Dago Thumper kit. 
-![Physical Connections](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg) ![](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper2.jpeg)
-
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg" width="800" height="600">
+<p>
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper2.jpeg" width="800" height="900">
+<p>
 ## Hardware Components    
 * The Ultrasonic sensor: in the front to detect obstacles in real time to prevent collisions.
 * STM32 Nucleo Board (L432KC): to controle the communication between all the actuators. 
