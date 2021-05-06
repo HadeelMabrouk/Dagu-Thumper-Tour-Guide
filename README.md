@@ -12,14 +12,16 @@ Social robots has been recently used to serve multiple purposes, like personal a
 * Obstacle Detection: To Avoid Collision.
 
 ### Logic Design 
-The Kit will take the user from a starting point and guide them in the Exhibit hall. It will detect 
+The Kit will take the user from a starting point and guide them in the Exhibit hall. Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end using the color detector to detect any color changes. 
 ![Logic Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG)
 
 ### System Design
+The following is a grahical representation of the full system design showing all the sensors and controllers. 
 ![System Design](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/system2.png)
 
 ### Physical Connections 
-![Physical Connections](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg) 
+The following is a real representation of the whole system on top of the Dago Thumper kit. 
+![Physical Connections](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg) ![](https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper2.jpeg)
 
 ## Hardware Components    
 * The Ultrasonic sensor: in the front to detect obstacles in real time to prevent collisions.
@@ -30,8 +32,6 @@ The Kit will take the user from a starting point and guide them in the Exhibit h
 * MP3 Mini Player Module (MP3－TF－16P)
 * MicroSD Memory Card
 * Speakers
-
-
 
 ## Software Platform 
 * Keil uVision5
