@@ -88,7 +88,7 @@ The sensor has two more control pins, S0 and S1 which are used for scaling the o
 
 ## Proposal Video
 For the project demo please follow [this link](project demo).  
-For the slides, check [this link](slides).
+For the slides, check [this link](https://docs.google.com/presentation/d/1RmCNSfiAMFpcmGRaHYcicuxDoOvI3oZQEuXQQSaUuzI/edit?usp=sharing).
 
 ## Team Members
 * Hadeel Mabrouk - 900163213
