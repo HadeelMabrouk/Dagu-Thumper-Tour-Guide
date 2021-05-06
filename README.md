@@ -79,8 +79,8 @@ The mp3 module is connected to the microcontroller using an asynchronous serial 
 * The human interaction partners follow the robot’s suggestions without the need for the robot to check for their compliance.
 
 ## Challenges and Modifications 
-We decided not to proceed working with Loomo Segway for number of reasons. These include the difficulty to deploy native C++ robotics applications on Loomo robot. The only Repository found that works as a bridge between JAVA SDK and C++ interfaces was in beta phase with no sufficient documentation and number of deprecated modules/libraries.
-The is no resources found that explain interfacing between our Color Sensor (TCS3200) and the STM32 Nucleo Board (L432KC). However, There are alot of support when using Arduino. So we were able to operate on Arduino to test the functionality of the color sensor. We tried to test the sensor with the STM-Nucleo Board, but the results are still not very accurate, and we’re currently in the process of debugging it.
+1. We decided not to proceed working with Loomo Segway for number of reasons. These include the difficulty to deploy native C++ robotics applications on Loomo robot. The only Repository found that works as a bridge between JAVA SDK and C++ interfaces was in beta phase with no sufficient documentation and number of deprecated modules/libraries.
+2. The is no resources found that explain interfacing between our Color Sensor (TCS3200) and the STM32 Nucleo Board (L432KC). However, There are alot of support when using Arduino. So we were able to operate on Arduino to test the functionality of the color sensor. We tried to test the sensor with the STM-Nucleo Board, but the results are still not very accurate, and we’re currently in the process of debugging it.
 
 
 ## Milestones
@@ -102,6 +102,9 @@ For the slides, check [this link](https://drive.google.com/file/d/1M-g5JhZSnqB3L
 
 ## First Demo Video
 Kindly, find the demo for the first milestone at [this link](https://drive.google.com/file/d/1uGxQUxJxeEkoPAEkJR61Si_i3kNQVQKg/view?usp=sharing).
+Find the MS1 presentation video at [this link](https://drive.google.com/file/d/1wY4F06E7ytnqnMiFXSs2j7YH9igndq4_/view?usp=sharing).  
+For the slides, check [this link](https://drive.google.com/file/d/16R0G9x_ihUdd-awvE7O7YBITOf0AfcLg/view?usp=sharing).
+
 
 ## Team Members
 * Hadeel Mabrouk - 900163213
