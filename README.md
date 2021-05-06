@@ -30,8 +30,9 @@ The following is a real representation of the whole system on top of the Dago Th
 <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg" width="800" height="600">
 <p>
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper2.jpeg" width="800" height="900">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper2.jpeg" width="800" height="1000">
 <p>
+  
 ## Hardware Components    
 * The Ultrasonic sensor: in the front to detect obstacles in real time to prevent collisions.
 * STM32 Nucleo Board (L432KC): to controle the communication between all the actuators. 
@@ -41,6 +42,25 @@ The following is a real representation of the whole system on top of the Dago Th
 * MP3 Mini Player Module (MP3－TF－16P)
 * MicroSD Memory Card
 * Speakers
+
+### Sensors 
+
+#### Color Sensor
+
+The TCS230 senses color light with the help of an 8 x 8 array of photodiodes. Then using a Current-to-Frequency Converter the readings from the photodiodes are converted into a square wave with a frequency directly proportional to the light intensity. Finally, using the Microcontroller Board we can read the square wave output and get the results for the color.
+
+<b> How it Works </b>
+* First set the input pins as input and output pins as output. No need to use analog pins.
+* Set S0 and S1 to high or low to set desired frequency scaling.
+* In loop, activate each filters by setting S2 and S3 to HIGH or LOW and measure frequency ‘fo’ from 6th pin to get corresponding colour intensity. Compare frequencies of each colour to determine the colour of the object.
+
+Each 16 photodiodes are connected in parallel, so using the two control pins S2 and S3 we can select which of them will be read. So for example, if we want to detect red color, we can just use the 16 red filtered photodiodes by setting the two pins to low logic level according to the following table: 
+
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/table1.png" width="500" height="140">
+<p>
+
+The sensor has two more control pins, S0 and S1 which are used for scaling the output frequency. The frequency can be scaled to three different preset values of 100 %, 20 % or 2%. This frequency-scaling function allows the output of the sensor to be optimized for various frequency counters or microcontrollers.
 
 ## Software Platform 
 * Keil uVision5
@@ -62,12 +82,13 @@ The following is a real representation of the whole system on top of the Dago Th
 
 
 ## References
-*
+* [TCS3200 Color sensor tutorial](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
+* [TCS3200 Color Sensor Datasheet](https://drive.google.com/file/d/1-g4x6M_L4UjA4q5OPvafdh0qgD8-i72m/view?usp=sharing)
 
 
 ## Proposal Video
-Kindly, find the proposal video at [this link](https://drive.google.com/file/d/1foOe66EDGX7r4gehLcNGmYwh58q4fUl_/view?usp=sharing).  
-For the slides, check [this link](https://drive.google.com/file/d/1M-g5JhZSnqB3LKiKBddfGtiu3rjULKN2/view?usp=sharing).
+For the project demo please follow [this link](project demo).  
+For the slides, check [this link](slides).
 
 ## Team Members
 * Hadeel Mabrouk - 900163213
