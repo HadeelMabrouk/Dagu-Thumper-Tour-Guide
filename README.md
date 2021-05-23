@@ -7,9 +7,10 @@ Social robots has been recently used to serve multiple purposes, like personal a
 
 ## Initial Design 
 ### Features
-* MP3 Audio Player: By Giving a Brief Description about an Art Piece.
+* MP3 Audio Player: By giving a brief description about an art piece.
 * Color Detection: To recognize the art piece through dtecting different colors.
-* Obstacle Detection: To Avoid Collision.
+* Path Following: By using a line tracker to follow a certain path.
+* User Input Taking: By using an HC-05 bluetooth bridge.
 
 ### Logic Design 
 The Kit will take the user from a starting point and guide them in the Exhibit hall. Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end using the color detector to detect any color changes. 
@@ -36,22 +37,28 @@ The following is a real representation of the whole system on top of the Dago Th
 
 
 ## Hardware Components    
-* STM32 Nucleo Board (L432KC): to controle the communication between all the actuators and sensors. 
+* 2 STM32 Nucleo Boards (L432KC): to controle the communication between all the actuators and sensors. 
 * Dagu Thumper
 * Pololu TReX Motor Controller
-* Color Sensor (TCS3200)
-* MP3 Mini Player Module (MP3－TF－16P)
-* MicroSD Memory Card
+* Color Sensor (TCS34725): to detect and recognize a certain exhibit.
+* MP3 Mini Player Module (MP3－TF－16P): to play an audio file describing a given exhibit.
+* MicroSD Memory Card: for audio files data storage.
 * Speakers
-* The Ultrasonic Sensor: in the front to detect obstacles in real time to prevent collisions.
+* Line Follower Sensor: to help the Dagu Thumper follow a given path.
+* HC-05 Bluetooth Bridge: to take input from the user about the exhibit they want to visit.
+* Android Smart Phone: to send commands to the system about the exhibit they want to visit.
 
-## Sensors 
+## Sensors and Actuators
 
-### Color Sensor
+### Color Sensors
 
-The TCS230 senses color light with the help of an 8 x 8 array of photodiodes. Then using a Current-to-Frequency Converter the readings from the photodiodes are converted into a square wave with a frequency directly proportional to the light intensity. Finally, using the Microcontroller Board we can read the square wave output and get the results for the color.
+#### TCS3200 Color Sensor
+<p align="center">
+<img src="https://ram-e-shop.com/wp-content/uploads/2018/09/sen_tcs3200.jpg" width="320" height="240">
+<p>
+Initially, we wanted to design our system using the TCS3200 color sensor, which works as follows. It first senses color light with the help of an 8 x 8 array of photodiodes. Then, using a Current-to-Frequency Converter the readings from the photodiodes are converted into a square wave with a frequency directly proportional to the light intensity. Finally, using the Microcontroller Board we can read the square wave output and get the results for the color.
 
-<b> How it Works </b>
+How it Works:
 * First set the input pins as input and output pins as output. No need to use analog pins.
 * Set S0 and S1 to high or low to set desired frequency scaling.
 * In loop, activate each filters by setting S2 and S3 to HIGH or LOW and measure frequency ‘fo’ from 6th pin to get corresponding colour intensity. Compare frequencies of each colour to determine the colour of the object.
@@ -61,13 +68,31 @@ Each 16 photodiodes are connected in parallel, so using the two control pins S2 
 <p align="center">
 <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/table1.png" width="500" height="140">
 <p>
-
+  
 The sensor has two more control pins, S0 and S1 which are used for scaling the output frequency. The frequency can be scaled to three different preset values of 100 %, 20 % or 2%. This frequency-scaling function allows the output of the sensor to be optimized for various frequency counters or microcontrollers.
 
+#### TCS34725 Color Sensor
+<p align="center">
+<img src="https://www.makerlab-electronics.com/wp-content/uploads/adafruit-color-sensor-tcs34725-1.jpg" width="400" height="380">
+<p>
+After running our initial experiments using the TCS3200 sensor, we later decided to replace it with the TCS34725 color sensor due to the fact that it is provided with an IR blocking filter, integrated on-chip and localized to the color sensing photodiodes, that minimizes the IR spectral component of the incoming light and allows color measurements to be made accurately. Additionally, it can be easily integrated with our Nucleo Board since it doesn't depend on timers to measure color frequencies, unlike TCS3200. To integrate it in our system, we made use of the library provided by Adafruit at [this link](https://github.com/adafruit/Adafruit_TCS34725), and made the necessary adjustments to make it compatible with our C project since the library is implemented in C++. I2C synchronous serial communication was used to interface it with the MCU.
+  
+### Line Follower Sensor
+<p align="center">
+<img src="https://ram-e-shop.com/wp-content/uploads/2018/09/kit_line_track_x3.jpg" width="320" height="240">
+<p>
+
 ### MP3 Mini Player Module
-
-The mp3 module is connected to the microcontroller using an asynchronous serial link, where it can read audio mp3 files from the microSD memory card and display them using the speaker, by taking command from the microcontroller on which audio file to play, volume level, ..etc. We used the default baud rate for the module (9600), as well as the default clock configurations. Additionally, we made use of the library provided in [this tutorial](https://www.youtube.com/watch?v=FoB_49eAvFA), and added to it some functionality to play a certain audio file by taking the track number as a parameter. For more information, check out the tutorial available in the references section below.
-
+<p align="center">
+<img src="https://i2.wp.com/electra.store/wp-content/uploads/2020/07/dfplayer_mini_mp3_player_module_-_twins_chip_1-550x550w.jpg?fit=550%2C550&ssl=1" width="275" height="275">
+<p>
+The mp3 module is connected to the microcontroller using an asynchronous serial link, where it can read audio mp3 files from the microSD memory card and display them using the speaker, by taking command from the microcontroller on which audio file to play, volume level, ..etc. We connected it to the STM32 board using asynchronous serial communication, namely UART2, with the default baud rate for the module (9600), as well as the default clock configurations. Additionally, we made use of the library provided in [this tutorial](https://www.youtube.com/watch?v=FoB_49eAvFA), and added to it some functionality to play a certain audio file by taking the track number as a parameter. For more information, check out the tutorial available in the references section below.
+  
+### HC-05 Bluetooth Bridge
+<p align="center">
+<img src="https://lh3.googleusercontent.com/proxy/EGByPg5tvgCaRVcm15Ww0KbmBaJXF2BH-z9_wuEXqTX20Aifmf61tExSPfIL-A2Io4tlUkIfHQBopJ_slTe99G_WYXlXoN0nVdhlTBhlQxaki3TDXRISze5pWb_PtiYcUIlpHS6dT_oNTigIOlH5ys1uTlI" width="275" height="275">
+<p>
+Additionally, we're using a bluetooth bridge to communicate with a secondary MCU via UART interface, to take input from an Android user via the bluetooth, and send it to the secondary MCU via the asynchronous link. Then, the secondary MCU transmit the user input to the primary MCU via a synchronous serial link using SPI.
 
 ## Software Platforms
 * Keil uVision5
@@ -80,13 +105,13 @@ The mp3 module is connected to the microcontroller using an asynchronous serial 
 
 ## Challenges and Modifications 
 1. We decided not to proceed working with Loomo Segway for number of reasons. These include the difficulty to deploy native C++ robotics applications on Loomo robot. The only Repository found that works as a bridge between JAVA SDK and C++ interfaces was in beta phase with no sufficient documentation and number of deprecated modules/libraries.
-2. The is no resources found that explain interfacing between our Color Sensor (TCS3200) and the STM32 Nucleo Board (L432KC). However, There are alot of support when using Arduino. So we were able to operate on Arduino to test the functionality of the color sensor. We tried to test the sensor with the STM-Nucleo Board, but the results are still not very accurate, and we’re currently in the process of debugging it.
+2. The was no resources found that explain interfacing between our color sensor (TCS3200) and the STM32 Nucleo Board (L432KC). Thus, we decided to replace it with another color sensor, namely TCS34725, which is performing noticeably better than the first one.
 
 
 ## Milestones
-1. First Milestone (Following a Given Map and MP3 Module Implementation): Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end. 
-2. Second Milestone (Art pieces detection & Information Retrieval): We will utilize the color sensor to detect the exhibits and then retrieve the related information. 
-3. Third Milestone (Point-to-Point Mapping & User input taking): In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition. The User shall send the name of the art piece tp the kit trough Bluetooth Module. 
+1. First Milestone (Following a Given Map and MP3 Module Implementation) DONE: Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end. 
+2. Second Milestone (Art pieces detection & Information Retrieval) DONE: We will utilize the color sensor to detect the exhibits and then retrieve the related information. 
+3. Third Milestone (Point-to-Point Mapping & User input taking) DONE: In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition. The User shall send the name of the art piece tp the kit trough Bluetooth Module. 
 
 
 ## References
@@ -94,6 +119,8 @@ The mp3 module is connected to the microcontroller using an asynchronous serial 
 * [TCS3200 Color Sensor Datasheet](https://drive.google.com/file/d/1-g4x6M_L4UjA4q5OPvafdh0qgD8-i72m/view?usp=sharing)
 * [MP3 Mini Player Datasheet](http://www.electronicoscaldas.com/datasheet/DFR0299-DFPlayer-Mini-Manual.pdf)
 * [MP3 Mini Player Tutorial](https://www.youtube.com/watch?v=FoB_49eAvFA)
+* [TCS34725 Color Sensor Datasheet](https://cdn-shop.adafruit.com/datasheets/TCS34725.pdf)  
+* [Adafruit TCS34725 Library](https://github.com/adafruit/Adafruit_TCS34725)  
 
 
 ## Proposal Video
