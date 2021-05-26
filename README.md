@@ -117,6 +117,21 @@ Additionally, we're using a bluetooth bridge to communicate with a secondary MCU
 3. Third Milestone (Point-to-Point Mapping & User input taking) DONE: In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition. The User shall send the name of the art piece to the kit trough Bluetooth Module. 
 
 
+
+  
+## How to Build and Run
+ To build this project clone both the Slave and Master projects. Upload the slave projcet on our primary Nucleo board and the Master project on the secodary Nucleo board. 
+  
+  Follow this Cube diagram here for the primary Nucleo board connections: 
+  <p align="center">
+  <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/primary.png" width="575" height="575">
+   <p>
+  
+  Follow this Cube diagram for the secondary Nucleo board connections: 
+     <p align="center">
+    <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/secondary.png" width="575" height="475">
+ <p>
+  
 ## References
 * [TCS3200 Color Sensor Tutorial](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
 * [TCS3200 Color Sensor Datasheet](https://drive.google.com/file/d/1-g4x6M_L4UjA4q5OPvafdh0qgD8-i72m/view?usp=sharing)
