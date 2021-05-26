@@ -32,13 +32,14 @@ The following is a grahical representation of the full system design showing all
 ### Physical Connections 
 The following is a real representation of the whole system on top of the Dago Thumper kit. 
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections.jpg" width="800" height="800">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections.jpg" width="650" height="500">
 <p>
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections2.jpg" width="800" height="800">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections2.jpg" width="650" height="700">
 <p>
+IR array sensor fixation to read the black line:
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/IR_array.jpg" width="800" height="800">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/IR_array.jpg" width="650" height="450">
 <p>
   
 
