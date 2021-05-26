@@ -87,7 +87,8 @@ After running our initial experiments using the TCS3200 sensor, we later decided
 <p align="center">
 <img src="https://i2.wp.com/electra.store/wp-content/uploads/2020/07/dfplayer_mini_mp3_player_module_-_twins_chip_1-550x550w.jpg?fit=550%2C550&ssl=1" width="275" height="275">
 <p>
-The mp3 module is connected to the microcontroller using an asynchronous serial link, where it can read audio mp3 files from the microSD memory card and display them using the speaker, by taking command from the microcontroller on which audio file to play, volume level, ..etc. We connected it to the STM32 board using asynchronous serial communication, namely UART2, with the default baud rate for the module (9600), as well as the default clock configurations. Additionally, we made use of the library provided in [this tutorial](https://www.youtube.com/watch?v=FoB_49eAvFA), and added to it some functionality to play a certain audio file by taking the track number as a parameter. For more information, check out the tutorial available in the references section below.
+The mp3 module is connected to the microcontroller using an asynchronous serial link, where it can read audio mp3 files from the microSD memory card and display them using the speaker, by taking command from the microcontroller on which audio file to play, volume level, ..etc. We connected it to the STM32 board using asynchronous serial communication, namely UART2, with the default baud rate for the module (9600), as well as the default clock configurations. Additionally, we made use of the library provided in [this tutorial](https://www.youtube.com/watch?v=FoB_49eAvFA)
+, and added to it some functionality to play a certain audio file by taking the track number as a parameter. For more information, check out the tutorial available in the references section below.
   
 ### HC-05 Bluetooth Bridge
 <p align="center">
@@ -106,13 +107,13 @@ Additionally, we're using a bluetooth bridge to communicate with a secondary MCU
 
 ## Challenges and Modifications 
 1. We decided not to proceed working with Loomo Segway for number of reasons. These include the difficulty to deploy native C++ robotics applications on Loomo robot. The only Repository found that works as a bridge between JAVA SDK and C++ interfaces was in beta phase with no sufficient documentation and number of deprecated modules/libraries.
-2. The was no resources found that explain interfacing between our color sensor (TCS3200) and the STM32 Nucleo Board (L432KC). Thus, we decided to replace it with another color sensor, namely TCS34725, which is performing noticeably better than the first one.
+2. There were no suffecient resources that explain interfacing between the old color sensor (TCS3200) and the STM32 Nucleo Board (L432KC). Thus, we decided to replace it with another color sensor, namely TCS34725, which is performing noticeably better than the first one and has better documentations.
 
 
 ## Milestones
 1. First Milestone (Following a Given Map and MP3 Module Implementation) DONE: Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end. 
 2. Second Milestone (Art pieces detection & Information Retrieval) DONE: We will utilize the color sensor to detect the exhibits and then retrieve the related information. 
-3. Third Milestone (Point-to-Point Mapping & User input taking) DONE: In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition. The User shall send the name of the art piece tp the kit trough Bluetooth Module. 
+3. Third Milestone (Point-to-Point Mapping & User input taking) DONE: In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition. The User shall send the name of the art piece to the kit trough Bluetooth Module. 
 
 
 ## References
