@@ -22,7 +22,7 @@ The Kit will take the user from a starting point and guide them in the Exhibit h
 ### System Design
 The following is a grahical representation of the full system design showing all the sensors and controllers. 
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/system.png" width="600" height="700">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/system.png" width="700" height="700">
 <p>
 
 ### Physical Connections 
