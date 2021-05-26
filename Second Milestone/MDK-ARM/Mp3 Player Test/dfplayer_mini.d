@@ -28,6 +28,8 @@ mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_h
 mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c_ex.h
 mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h
 mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h
+mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h
+mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h
 mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h
 mp3 player test\dfplayer_mini.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
 mp3 player test\dfplayer_mini.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

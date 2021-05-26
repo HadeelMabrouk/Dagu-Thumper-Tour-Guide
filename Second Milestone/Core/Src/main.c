@@ -43,6 +43,8 @@
 /* Private variables ---------------------------------------------------------*/
 extern I2C_HandleTypeDef hi2c1;
 
+SPI_HandleTypeDef hspi3;
+
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
@@ -50,6 +52,16 @@ UART_HandleTypeDef huart2;
 uint8_t debugStatus=0;
 uint8_t state=1;
 uint16_t r, g, b, c, colorTemp, lux;
+
+int IR_LEFT   = 0;
+int IR_CENTER = 0;
+int IR_RIGHT  = 0;
+uint8_t right_msg[10]   = "RIGHT";
+uint8_t left_msg[10]    = "LEFT";
+uint8_t forward_msg[10] = "CENTER";
+uint8_t endline         = '\n';
+uint8_t cr              = '\r';
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,6 +70,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_SPI3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -131,6 +144,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_I2C1_Init();
+  MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
 	DF_Init(40);
 	if (tcs_init()) {
@@ -163,114 +177,163 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
-		//move forward
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+		////////////////////////////////////////////////////////////////////
+		IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
+		IR_CENTER = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11);
+		IR_RIGHT  = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7);
 		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+		
+		if (IR_LEFT == 1 && IR_CENTER == 0 && IR_RIGHT == 0) //turn right conditions
+		{
+			HAL_UART_Transmit(&huart2 , &Right[0] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &Right[1] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+			
+			HAL_Delay(1350); //90-degrees turn delay
+			//play record 
+			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+			
+			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+			play_audio();
+			HAL_Delay(5000);
+		}
+		else if (IR_LEFT == 0 && IR_CENTER == 0 && IR_RIGHT == 1) //turn left conditions
+		{
+			HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
+			HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+			
+			HAL_Delay(1350); //90-degrees turn delay
+			//play record 
+			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+			
+			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+			play_audio();
+			HAL_Delay(5000);
+		}
+		else /*if (IR_LEFT == 1 && IR_CENTER == 0 && IR_RIGHT == 1)*/ //forward
+		{
+			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
+			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+		}
+		////////////////////////////////////////////////////////////////////
+		
+//		//move forward
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 
-		//HAL_Delay(3500);
-		
-		//play record 1
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		play_audio();
-		HAL_Delay(5000);
-		
-		
-		//turn
-		HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		//HAL_Delay(1350);
-		
-		//forward
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		HAL_Delay(3500);
+//		
+//		//play record 1
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		play_audio();
+//		HAL_Delay(5000);
+//		
+//		
+//		//turn
+//		HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_Delay(1350);
+//		
+//		//forward
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 
-		//HAL_Delay(3500);
-		
-		//play record 2
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		play_audio();
-		HAL_Delay(5000);
-		
-		//turn
-		HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		//HAL_Delay(1350);
-		
-		//forward
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		//HAL_Delay(3500);
-		
-		//play record 3
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		play_audio();
-		HAL_Delay(5000);
-		
-		//turn
-		HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		//HAL_Delay(1350);
+//		HAL_Delay(3500);
+//		
+//		//play record 2
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		play_audio();
+//		HAL_Delay(5000);
+//		
+//		//turn
+//		HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_Delay(1350);
+//		
+//		//forward
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_Delay(3500);
+//		
+//		//play record 3
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		play_audio();
+//		HAL_Delay(5000);
+//		
+//		//turn
+//		HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_Delay(1350);
 
-		//forward
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		
-		//HAL_Delay(3500);
-		
-		//play record 4
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-		play_audio();
-		HAL_Delay(5000);
+//		//forward
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_Delay(3500);
+//		
+//		//play record 4
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+//		play_audio();
+//		HAL_Delay(5000);
 
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , 0 ,1 ,HAL_MAX_DELAY);
-		
-		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2 , 0 ,1 ,HAL_MAX_DELAY);
-		
-		// STOP
-		HAL_Delay(HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , 0 ,1 ,HAL_MAX_DELAY);
+//		
+//		HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+//		HAL_UART_Transmit(&huart2 , 0 ,1 ,HAL_MAX_DELAY);
+//		
+//		// STOP
+//		HAL_Delay(HAL_MAX_DELAY);
 		
   }
   /* USER CODE END 3 */
@@ -383,6 +446,45 @@ static void MX_I2C1_Init(void)
 }
 
 /**
+  * @brief SPI3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI3_Init(void)
+{
+
+  /* USER CODE BEGIN SPI3_Init 0 */
+
+  /* USER CODE END SPI3_Init 0 */
+
+  /* USER CODE BEGIN SPI3_Init 1 */
+
+  /* USER CODE END SPI3_Init 1 */
+  /* SPI3 parameter configuration*/
+  hspi3.Instance = SPI3;
+  hspi3.Init.Mode = SPI_MODE_SLAVE;
+  hspi3.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi3.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi3.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi3.Init.NSS = SPI_NSS_SOFT;
+  hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi3.Init.CRCPolynomial = 7;
+  hspi3.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+  hspi3.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
+  if (HAL_SPI_Init(&hspi3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI3_Init 2 */
+
+  /* USER CODE END SPI3_Init 2 */
+
+}
+
+/**
   * @brief USART1 Initialization Function
   * @param None
   * @retval None
@@ -433,7 +535,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 19200;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -459,11 +561,18 @@ static void MX_USART2_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pins : PA4 PA7 PA11 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_7|GPIO_PIN_11;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
