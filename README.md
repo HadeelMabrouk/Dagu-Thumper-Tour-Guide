@@ -1,6 +1,9 @@
 
 # Dagu Thumper Tour Guide
 The main idea of this project is to design a conceptual robot tour guide for an art gallery using Dagu Thumper. The kit's task is to scan the art space, detect the exibits by detecting their color, recall background information and give the visitors a brief description about the history of the art piece, e.x. artist, period, location ..etc.
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/tour.jpg" width="700" height="400">
+<p>
 
 ## Motivation 
 Social robots has been recently used to serve multiple purposes, like personal assistance and performing tasks within the domain of domestic services and healthcare. Currently, there is a growing interest in the use of tour guide mobile robots in various environments such as museums, exhibitions and fairs, to provide help for the visitors by offering them a set of services, such as giving them general tours, helping them find points of interest, and providing information about different exhibits.
@@ -29,10 +32,13 @@ The following is a grahical representation of the full system design showing all
 ### Physical Connections 
 The following is a real representation of the whole system on top of the Dago Thumper kit. 
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg" width="800" height="800">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections.jpg" width="800" height="800">
 <p>
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper2.jpeg" width="800" height="800">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections2.jpg" width="800" height="800">
+<p>
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/IR_array.jpg" width="800" height="800">
 <p>
   
 
