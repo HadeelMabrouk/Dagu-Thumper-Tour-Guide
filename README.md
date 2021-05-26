@@ -17,7 +17,7 @@ The Kit will take the user input through a bleutooth module. The Dagu will then 
 
 
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG" width="600" height="400">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG" width="700" height="400">
 <p>
   
 ### System Design
