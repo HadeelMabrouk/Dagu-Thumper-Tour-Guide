@@ -40,11 +40,11 @@ The following is a real representation of the whole system on top of the Dago Th
 ## Hardware Components    
 * 2 STM32 Nucleo Boards (L432KC): to controle the communication between all the actuators and sensors. 
 * Dagu Thumper
-* Pololu TReX Motor Controller
+* Pololu TReX Motor Controller : To control the Dagu Thumper.
 * Color Sensor (TCS34725): to detect and recognize a certain exhibit.
 * MP3 Mini Player Module (MP3－TF－16P): to play an audio file describing a given exhibit.
 * MicroSD Memory Card: for audio files data storage.
-* Speakers
+* Speakers: To retrieve information. 
 * Line Follower Sensor: to help the Dagu Thumper follow a given path.
 * HC-05 Bluetooth Bridge: to take input from the user about the exhibit they want to visit.
 * Android Smart Phone: to send commands to the system about the exhibit they want to visit.
@@ -80,7 +80,7 @@ After running our initial experiments using the TCS3200 sensor, we later decided
   
 ### Line Follower Sensor
 <p align="center">
-<img src="https://ram-e-shop.com/wp-content/uploads/2018/09/kit_line_track_x3.jpg" width="320" height="240">
+<img src="https://i0.wp.com/makerselectronics.com/wp-content/uploads/2017/01/Line-Tracker-Module-3-Channels.jpg?fit=1600%2C1600&ssl=1" width="320" height="240">
 <p>
 
 ### MP3 Mini Player Module
