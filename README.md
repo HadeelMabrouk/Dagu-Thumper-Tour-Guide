@@ -76,7 +76,7 @@ The sensor has two more control pins, S0 and S1 which are used for scaling the o
 <p align="center">
 <img src="https://superbtech.in/wp-content/uploads/2020/07/1-57.jpg" width="400" height="380">
 <p>
-After running our initial experiments using the TCS3200 sensor, we later decided to replace it with the TCS34725 color sensor due to the fact that it is provided with an IR blocking filter, integrated on-chip and localized to the color sensing photodiodes, that minimizes the IR spectral component of the incoming light and allows color measurements to be made accurately. Additionally, it can be easily integrated with our Nucleo Board since it doesn't depend on timers to measure color frequencies, unlike TCS3200. To integrate it in our system, we made use of the library provided by Adafruit at [this link] (https://github.com/adafruit/Adafruit_TCS34725), and made the necessary adjustments to make it compatible with our C project since the library is implemented in C++. I2C synchronous serial communication was used to interface it with the MCU.
+After running our initial experiments using the TCS3200 sensor, we later decided to replace it with the TCS34725 color sensor due to the fact that it is provided with an IR blocking filter, integrated on-chip and localized to the color sensing photodiodes, that minimizes the IR spectral component of the incoming light and allows color measurements to be made accurately. Additionally, it can be easily integrated with our Nucleo Board since it doesn't depend on timers to measure color frequencies, unlike TCS3200. To integrate it in our system, we made use of the library provided by Adafruit at [this link](https://github.com/adafruit/Adafruit_TCS34725) , and made the necessary adjustments to make it compatible with our C project since the library is implemented in C++. I2C synchronous serial communication was used to interface it with the MCU.
   
 ### Line Follower Sensor
 <p align="center">
@@ -87,7 +87,8 @@ After running our initial experiments using the TCS3200 sensor, we later decided
 <p align="center">
 <img src="https://i2.wp.com/electra.store/wp-content/uploads/2020/07/dfplayer_mini_mp3_player_module_-_twins_chip_1-550x550w.jpg?fit=550%2C550&ssl=1" width="275" height="275">
 <p>
-The mp3 module is connected to the microcontroller using an asynchronous serial link, where it can read audio mp3 files from the microSD memory card and display them using the speaker, by taking command from the microcontroller on which audio file to play, volume level, ..etc. We connected it to the STM32 board using asynchronous serial communication, namely UART2, with the default baud rate for the module (9600), as well as the default clock configurations. Additionally, we made use of the library provided in [this tutorial](https://www.youtube.com/watch?v=FoB_49eAvFA)
+The mp3 module is connected to the microcontroller using an asynchronous serial link, where it can read audio mp3 files from the microSD memory card and display them using the speaker, by taking command from the microcontroller on which audio file to play, volume level, ..etc. We connected it to the STM32 board using asynchronous serial communication, namely UART2, with the default baud rate for the module (9600), as well as the default clock configurations. Additionally, we made use of the library provided in [this link](https://www.youtube.com/watch?v=FoB_49eAvFA)
+
 , and added to it some functionality to play a certain audio file by taking the track number as a parameter. For more information, check out the tutorial available in the references section below.
   
 ### HC-05 Bluetooth Bridge
