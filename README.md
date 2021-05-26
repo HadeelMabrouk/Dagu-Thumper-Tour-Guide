@@ -7,13 +7,14 @@ Social robots has been recently used to serve multiple purposes, like personal a
 
 ## Initial Design 
 ### Features
-* MP3 Audio Player: By giving a brief description about an art piece.
+* MP3 Audio Playing: To give a brief description about an art piece.
 * Color Detection: To recognize the art piece through dtecting different colors.
-* Path Following: By using a line tracker to follow a certain path.
+* Line Following: To use a line tracker array to follow a certain path.
 * User Input Taking: By using an HC-05 bluetooth bridge.
 
 ### Logic Design 
-The Kit will take the user from a starting point and guide them in the Exhibit hall. Using a previously known localization map, the Dugo Thumper can guide the users and give them information about different exhibits, following a predefined path from start to end using the color detector to detect any color changes. 
+The Kit will take the user input through a bleutooth module. The Dagu will then start the track searching for the spicific color associated with this exhibit. When the Robot finds the exhibit it will stop and retrieve the information related to it. A black track will represent the exhibition hall and two IR arrays will be used to follow this track. 
+
 
 <p align="center">
 <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/logic.PNG" width="600" height="400">
