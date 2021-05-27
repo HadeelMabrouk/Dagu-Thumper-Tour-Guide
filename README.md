@@ -165,6 +165,9 @@ Kindly, find the demo for the first milestone at [this link](https://drive.googl
 Find the MS1 presentation video at [this link](https://drive.google.com/file/d/1wY4F06E7ytnqnMiFXSs2j7YH9igndq4_/view?usp=sharing).  
 For the slides, check [this link](https://drive.google.com/file/d/16R0G9x_ihUdd-awvE7O7YBITOf0AfcLg/view?usp=sharing).
 
+## Final demo
+Kindly, find the demo for the final milestone of the general tour at [this link](https://drive.google.com/file/d/1snsZqNt-3suH3XO_LTMTuha84kDABb1a/view?usp=sharing).
+Find the demo for the customized tour at [This link](https://drive.google.com/file/d/1soyT5qtXh-67CZ8F_E1CuZy48c1wsAET/view?usp=sharing) .
 
 ## Team Members
 * Hadeel Mabrouk - 900163213
