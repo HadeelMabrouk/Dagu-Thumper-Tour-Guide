@@ -1,6 +1,9 @@
 
 # Dagu Thumper Tour Guide
 The main idea of this project is to design a conceptual robot tour guide for an art gallery using Dagu Thumper. The kit's task is to scan the art space, detect the exibits by detecting their color, recall background information and give the visitors a brief description about the history of the art piece, e.x. artist, period, location ..etc.
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/tour.jpg" width="700" height="400">
+<p>
 
 ## Motivation 
 Social robots has been recently used to serve multiple purposes, like personal assistance and performing tasks within the domain of domestic services and healthcare. Currently, there is a growing interest in the use of tour guide mobile robots in various environments such as museums, exhibitions and fairs, to provide help for the visitors by offering them a set of services, such as giving them general tours, helping them find points of interest, and providing information about different exhibits.
@@ -29,10 +32,14 @@ The following is a grahical representation of the full system design showing all
 ### Physical Connections 
 The following is a real representation of the whole system on top of the Dago Thumper kit. 
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper1.jpeg" width="800" height="800">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections.jpg" width="650" height="500">
 <p>
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/thumper2.jpeg" width="800" height="800">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections2.jpg" width="650" height="700">
+<p>
+IR array sensor fixation to read the black line:
+<p align="center">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/IR_array.jpg" width="650" height="450">
 <p>
   
 
@@ -117,6 +124,21 @@ Additionally, we're using a bluetooth bridge to communicate with a secondary MCU
 3. Third Milestone (Point-to-Point Mapping & User input taking) DONE: In this milestone, we shall add the feature of the robot being able to direct the users to their desired art piece from a any point in the exhibition. The User shall send the name of the art piece to the kit trough Bluetooth Module. 
 
 
+
+  
+## How to Build and Run
+ To build this project clone both the Slave and Master projects. Upload the slave projcet on our primary Nucleo board and the Master project on the secodary Nucleo board. 
+  
+  Follow this Cube diagram here for the primary Nucleo board connections: 
+  <p align="center">
+  <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/primary.png" width="575" height="575">
+   <p>
+  
+  Follow this Cube diagram for the secondary Nucleo board connections: 
+     <p align="center">
+    <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/secondary.png" width="575" height="475">
+ <p>
+  
 ## References
 * [TCS3200 Color Sensor Tutorial](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
 * [TCS3200 Color Sensor Datasheet](https://drive.google.com/file/d/1-g4x6M_L4UjA4q5OPvafdh0qgD8-i72m/view?usp=sharing)
