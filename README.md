@@ -35,7 +35,7 @@ The following is a real representation of the whole system on top of the Dago Th
 <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections.jpg" width="650" height="500">
 <p>
 <p align="center">
-<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections2.jpg" width="650" height="700">
+<img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/connections2.jpg" width="650" height="650">
 <p>
 IR array sensor fixation to read the black line:
 <p align="center">
@@ -166,7 +166,7 @@ Find the MS1 presentation video at [this link](https://drive.google.com/file/d/1
 For the slides, check [this link](https://drive.google.com/file/d/16R0G9x_ihUdd-awvE7O7YBITOf0AfcLg/view?usp=sharing).
 
 ## Final demo
-Kindly, find the demo for the final milestone of the general tour at [this link](https://drive.google.com/file/d/1snsZqNt-3suH3XO_LTMTuha84kDABb1a/view?usp=sharing).
+Kindly, find the demo for the final milestone of the general tour at [this link](https://drive.google.com/file/d/1snsZqNt-3suH3XO_LTMTuha84kDABb1a/view?usp=sharing). <br/>
 Find the demo for the customized tour at [This link](https://drive.google.com/file/d/1soyT5qtXh-67CZ8F_E1CuZy48c1wsAET/view?usp=sharing) .
 
 ## Team Members
