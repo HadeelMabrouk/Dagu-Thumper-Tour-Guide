@@ -56,8 +56,10 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern SPI_HandleTypeDef hspi3;
 /* USER CODE BEGIN EV */
+extern char SPI_data[3];
+extern UART_HandleTypeDef huart2;
 
 /* USER CODE END EV */
 
@@ -198,6 +200,22 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32l4xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles SPI3 global interrupt.
+  */
+void SPI3_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI3_IRQn 0 */
+
+  /* USER CODE END SPI3_IRQn 0 */
+  HAL_SPI_IRQHandler(&hspi3);
+  /* USER CODE BEGIN SPI3_IRQn 1 */
+
+		//HAL_SPI_Receive(&hspi3, (uint8_t*)SPI_data, sizeof(SPI_data), 100);
+		//HAL_UART_Transmit(&huart2,(uint8_t*)SPI_data, sizeof(SPI_data), HAL_MAX_DELAY);
+  /* USER CODE END SPI3_IRQn 1 */
+}
 
 /* USER CODE BEGIN 1 */
 

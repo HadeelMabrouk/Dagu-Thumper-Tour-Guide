@@ -70,6 +70,8 @@ uint8_t ForwardBoth[]   = {0xC2,0xCA};
 uint8_t Left[]          = {0xC1,0xCA};
 uint8_t Right[]         = {0xC2,0xC9};
 char SPI_data[3]        = {0};
+int corners_counter     = 0;
+int trun_delay          = 1480;
 	
 /* USER CODE END PV */
 
@@ -153,17 +155,7 @@ void follow_red()
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Right[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				
-				HAL_Delay(1480); //90-degrees turn delay
-				
-				//play record 
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				play_audio();
-				HAL_Delay(5000);
-				
+				HAL_Delay(trun_delay); //90-degrees turn delay
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
@@ -176,22 +168,12 @@ void follow_red()
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				
-				HAL_Delay(1480); //90-degrees turn delay
-				
-				//play record 
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);		
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				play_audio();
-				HAL_Delay(5000);
-				
+				HAL_Delay(trun_delay); //90-degrees turn delay	
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				HAL_Delay(500);			
+				HAL_Delay(500);
 			}
 			else //forward
 			{
@@ -205,6 +187,8 @@ void follow_red()
 			detect_color();
 		}
 		
+		//reset the flag
+		red_flag = 0;
 		//stop when while loop is finished --> when red is reached
 		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
@@ -230,17 +214,7 @@ void follow_green()
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Right[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				
-				HAL_Delay(1480); //90-degrees turn delay
-				
-				//play record 
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				play_audio();
-				HAL_Delay(5000);
-				
+				HAL_Delay(trun_delay); //90-degrees turn delay
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
@@ -253,22 +227,12 @@ void follow_green()
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				
-				HAL_Delay(1480); //90-degrees turn delay
-				
-				//play record 
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);		
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				play_audio();
-				HAL_Delay(5000);
-				
+				HAL_Delay(trun_delay); //90-degrees turn delay	
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				HAL_Delay(500);			
+				HAL_Delay(500);
 			}
 			else //forward
 			{
@@ -282,6 +246,8 @@ void follow_green()
 			detect_color();
 		}
 		
+		//reset the flag
+		green_flag = 0;
 		//stop when while loop is finished --> when red is reached
 		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
@@ -295,7 +261,7 @@ void follow_green()
 void follow_blue()
 {
 	 detect_color();
-	 while (!red_flag)
+	 while (!blue_flag)
 	 {
 			IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 			IR_CENTER = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11);
@@ -307,17 +273,7 @@ void follow_blue()
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Right[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				
-				HAL_Delay(1480); //90-degrees turn delay
-				
-				//play record 
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				play_audio();
-				HAL_Delay(5000);
-				
+				HAL_Delay(trun_delay); //90-degrees turn delay
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
@@ -330,22 +286,12 @@ void follow_blue()
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				
-				HAL_Delay(1480); //90-degrees turn delay
-				
-				//play record 
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);		
-				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-				HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-				play_audio();
-				HAL_Delay(5000);
-				
+				HAL_Delay(trun_delay); //90-degrees turn delay	
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
 				HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
 				HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-				HAL_Delay(500);			
+				HAL_Delay(500);
 			}
 			else //forward
 			{
@@ -359,6 +305,8 @@ void follow_blue()
 			detect_color();
 		}
 		
+		//reset the flag
+		blue_flag = 0;
 		//stop when while loop is finished --> when red is reached
 		HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 		HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
@@ -371,7 +319,9 @@ void follow_blue()
 }
 void general_tour()
 {
-IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
+	while (corners_counter < 4)
+	{
+		IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 		IR_CENTER = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11);
 		IR_RIGHT  = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7);
 		
@@ -382,7 +332,7 @@ IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 			HAL_UART_Transmit(&huart2 , &Right[1] ,1 ,HAL_MAX_DELAY);
 			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 			
-			HAL_Delay(1480); //90-degrees turn delay
+			HAL_Delay(trun_delay); //90-degrees turn delay
 			
 			//play record 
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
@@ -390,6 +340,7 @@ IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
 			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
 			play_audio();
+			corners_counter++; 
 			HAL_Delay(5000);
 			
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
@@ -405,7 +356,7 @@ IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 			HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
 			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 			
-			HAL_Delay(1480); //90-degrees turn delay
+			HAL_Delay(trun_delay); //90-degrees turn delay
 			
 			//play record 
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
@@ -413,6 +364,7 @@ IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
 			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
 			play_audio();
+			corners_counter++;
 			HAL_Delay(5000);
 			
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
@@ -428,6 +380,15 @@ IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
 			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
 		}
+	}
+	
+	//reset the counter
+	corners_counter = 0;
+	//stop when the general tour is finished 
+	HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
 }
 /* USER CODE END 0 */
 
@@ -479,6 +440,7 @@ int main(void)
 	
 	HAL_Delay(3000);
   /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -488,7 +450,9 @@ int main(void)
     /* USER CODE BEGIN 3 */
 		
 		/////////////////////////////start SPI slave part///////////////////////////////////////
-		HAL_SPI_Receive(&hspi3, (uint8_t*)SPI_data, sizeof(SPI_data), 100);
+		while (HAL_SPI_Receive(&hspi3, (uint8_t*)SPI_data, sizeof(SPI_data), 100) != HAL_OK) ;
+		
+		//HAL_SPI_Receive(&hspi3, (uint8_t*)SPI_data, sizeof(SPI_data), 100);
 		if (SPI_data[0] == 'R')
 		{ 
 			//follow the line until you find Green --> then stop
@@ -504,71 +468,21 @@ int main(void)
 			//follow the line until you find Blue --> then stop
 			follow_blue();
 		}
-		else 
+		else if (SPI_data[0] == 'T')
 		{
 			//give the general tour of all exhibits
 			general_tour();
 		}
-		/////////////////////////////end SPI slave part///////////////////////////////////////
-
-		IR_LEFT   = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
-		IR_CENTER = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11);
-		IR_RIGHT  = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7);
-		
-		if (IR_LEFT == 1 && IR_RIGHT == 0) //turn right conditions
+		else 
 		{
-			HAL_UART_Transmit(&huart2 , &Right[0] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Right[1] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-			
-			HAL_Delay(1480); //90-degrees turn delay
-			
-			//play record 
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-			play_audio();
-			HAL_Delay(5000);
-			
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-			HAL_Delay(500);
-		}
-		if (IR_LEFT == 0 && IR_RIGHT == 1) //turn left conditions
-		{
-			HAL_UART_Transmit(&huart2 , &Left[0] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
-			HAL_UART_Transmit(&huart2 , &Left[1] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-			
-			HAL_Delay(1480); //90-degrees turn delay
-			
-			//play record 
+			//stop
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
 			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);		
 			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
 			HAL_UART_Transmit(&huart2 , &zero ,1 ,HAL_MAX_DELAY);
-			play_audio();
-			HAL_Delay(5000);
-			
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-			HAL_Delay(500);			
 		}
-		else //forward
-		{
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[0] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);		
-			HAL_UART_Transmit(&huart2 , &ForwardBoth[1] ,1 ,HAL_MAX_DELAY);
-			HAL_UART_Transmit(&huart2 , &Speed ,1 ,HAL_MAX_DELAY);
-		}
-	
+		/////////////////////////////end SPI slave part///////////////////////////////////////
+
   }
   /* USER CODE END 3 */
 }
