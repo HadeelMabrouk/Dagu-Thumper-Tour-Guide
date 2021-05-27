@@ -107,6 +107,7 @@ Additionally, we're using a bluetooth bridge to communicate with a secondary MCU
 ## Software Platforms
 * Keil uVision5
 * STM32CubeMX
+* Serial Bluetooth Terminal (or any equivalent application). 
 
 
 ## Initial Assumptions
@@ -139,6 +140,12 @@ Additionally, we're using a bluetooth bridge to communicate with a secondary MCU
     <img src="https://github.com/HadeelMabrouk/Embedded-Project-2/blob/main/Images/secondary.png" width="575" height="475">
  <p>
   
+ Using the serial Bluetooth Terminal application on your Android Mobile Phone, send the following Letters for each mood of operation:
+   "R" : to take the user to the red exhibit. 
+   "B" : to take the user to the blue exhibit. 
+   "G" : to take the user to the green exhibit.
+   "T" : to take the user in a general tour passing through all the exhibits.  
+   
 ## References
 * [TCS3200 Color Sensor Tutorial](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
 * [TCS3200 Color Sensor Datasheet](https://drive.google.com/file/d/1-g4x6M_L4UjA4q5OPvafdh0qgD8-i72m/view?usp=sharing)
@@ -158,10 +165,7 @@ Kindly, find the demo for the first milestone at [this link](https://drive.googl
 Find the MS1 presentation video at [this link](https://drive.google.com/file/d/1wY4F06E7ytnqnMiFXSs2j7YH9igndq4_/view?usp=sharing).  
 For the slides, check [this link](https://drive.google.com/file/d/16R0G9x_ihUdd-awvE7O7YBITOf0AfcLg/view?usp=sharing).
 
-## Final demo
-   Kindly, find the demo for the final milestone of the general tour at [this link](https://drive.google.com/file/d/1snsZqNt-3suH3XO_LTMTuha84kDABb1a/view?usp=sharing).
-   Find the demo for the customized tour at [This link](https://drive.google.com/file/d/1soyT5qtXh-67CZ8F_E1CuZy48c1wsAET/view?usp=sharing) .
-   
+
 ## Team Members
 * Hadeel Mabrouk - 900163213
 * Israa Fahmy - 900171831
